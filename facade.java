@@ -1,6 +1,4 @@
 public class CarEngineFacade {
-    private static final Integer DEFAULT_COOLING_TEMP = 90;
-    private static final Integer MAX_ALLOWED_TEMP = 50;
     private FuelInjector fuelInjector = new FuelInjector();
     private AirFlowController airFlowController = new AirFlowController();
     private Starter starter = new Starter();
@@ -13,7 +11,6 @@ public class CarEngineFacade {
         fuelInjector.on();
         fuelInjector.inject();
         starter.start();
-        coolingController.setTemperatureUpperLimit(DEFAULT_COOLING_TEMP);
         coolingController.run();
         catalyticConverter.on();
     }
@@ -21,7 +18,6 @@ public class CarEngineFacade {
     public void stopEngine(){
         fuelInjector.off();
         catalyticConverter.off();
-        coolingController.cool(MAX_ALLOWED_TEMP);
         coolingController.stop();
         airFlowController.off();
     }
